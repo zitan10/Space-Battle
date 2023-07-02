@@ -3,39 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class PlayerProjectile : Projectile
 {
-    [SerializeField]
-    private float _aliveTime = 5f;
-
-    private float _timer = 0f;
-
-    private Action _cb;
-
     private Rigidbody _rb;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-    }
-
-    private void OnEnable()
-    {
-        _timer = 0f;
-    }
-
-    private void Update()
-    {
-        _timer += Time.deltaTime;
-        if(_timer > _aliveTime)
-        {
-            _cb();
-        }
-    }
-
-    public void SetCb(Action cb)
-    {
-        _cb = cb;
     }
 
     public void Reset()
