@@ -45,7 +45,6 @@ public class ShipMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         HandlePlayerInput();
@@ -78,16 +77,9 @@ public class ShipMovement : MonoBehaviour
         }
 
         // Up/Down
-        if (UpDownInput != 0f)
-        {
-            _rb.AddRelativeForce(Vector3.up * UpDownInput * _upThrust);
-            _verticalGlide *= _upDownReduction;
-        }
-        else
-        {
-            _rb.AddRelativeForce(Vector3.up * _verticalGlide);
-            _verticalGlide *= _upDownReduction;
-        }
+        var upForce = (UpDownInput != 0f) ? Vector3.up * UpDownInput * _upThrust : Vector3.up * _verticalGlide;
+        _rb.AddRelativeForce(upForce);
+        _verticalGlide *= _upDownReduction;
 
         // horizontal
         if (StrafeInput != 0f)

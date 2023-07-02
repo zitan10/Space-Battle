@@ -293,6 +293,8 @@ MonoBehaviour:
   _projectile: {fileID: -7788187648253425539, guid: 7d664aacb0d44ed4cb0213d9a1647112, type: 3}
   _barrelTransform: {fileID: 8398018811843252074}
   _projectileForce: 3000
+  _hp: 1000
+  _explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
 --- !u!65 &2496889091832230083
 BoxCollider:
   m_ObjectHideFlags: 0

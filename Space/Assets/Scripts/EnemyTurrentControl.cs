@@ -19,6 +19,10 @@ public class EnemyTurrentControl : MonoBehaviour
     private Transform _barrelTransform;
     [SerializeField]
     float _projectileForce = 2500f;
+    [SerializeField]
+    float _hp = 1000f;
+    [SerializeField]
+    GameObject _explosionEffect;
 
     Transform _projectileDefaultPosition;
     private float _timer;
@@ -111,8 +115,20 @@ public class EnemyTurrentControl : MonoBehaviour
     {
         if(LayerMask.LayerToName(collision.gameObject.layer) == "PlayerProjectile")
         {
-            transform.gameObject.SetActive(false);
+            _hp -= 200f;
+            if(_hp <= 0f)
+            {
+                ExplosionEffect();
+                transform.gameObject.SetActive(false);
+            }
         }
+    }
+
+    private void ExplosionEffect()
+    {
+        //ToDo Move to object pool
+        var explosion = Instantiate(_explosionEffect, transform.position, transform.rotation);
+        Destroy(explosion, 2f);
     }
 
 }
